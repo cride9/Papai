@@ -82,7 +82,7 @@ def list_users(_admin: User = Depends(require_admin)):
                 total_prompts=total_prompts,
                 total_likes=total_likes,
                 total_dislikes=total_dislikes,
-                last_login=u.last_login.isoformat() if u.last_login else None,
+                last_login=(u.last_login.isoformat() + "Z") if u.last_login else None,
             ))
         return result
 
@@ -164,7 +164,7 @@ def list_pdfs(_admin: User = Depends(require_admin)):
                 filename=filename,
                 page_count=page_count,
                 status=d.status or "COMPLETED",
-                uploaded_at=d.processed_at.isoformat() if d.processed_at else None,
+                uploaded_at=(d.processed_at.isoformat() + "Z") if d.processed_at else None,
             ))
         return result
 
